@@ -6,6 +6,10 @@ const Todo = sequelize.define("todo", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  category: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   completed: {
     type: DataTypes.BOOLEAN,
     allowNull: false,

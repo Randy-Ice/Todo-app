@@ -8,6 +8,10 @@ const PORT = process.env.PORT;
 const app = express();
 const Connection = require("./Database/association and connection");
 
+//^Register route handlers
+const todoRouter = require("./Routes/todoRoutes");
+const userRouter = require("./Routes/userRoutes");
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // limit each IP to 100 requests per windowMs
@@ -41,6 +45,8 @@ app.get("/", (req, res) => {
     .json({ message: "Welcome to a simple todo application!, enjoy 😀" });
 });
 
+app.use("/api/v1/todo", todoRouter);
+app.use("/api/v1/user", userRouter);
 //^ catch all routes
 app.all("*", (req, res) => {
   res.status(404).json({
